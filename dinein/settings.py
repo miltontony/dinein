@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 
     'dinein',
+    'social_auth',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -59,6 +60,23 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.contrib.messages.context_processors.messages",
     "dinein.context_processors.ga_profile_id"
 )
+
+AUTHENTICATION_BACKENDS = (
+    'social_auth.backends.twitter.TwitterBackend',
+    'social_auth.backends.facebook.FacebookBackend',
+    'social_auth.backends.google.GoogleOAuth2Backend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+TWITTER_CONSUMER_KEY         = 'Gzc7NMWNQ62G5ToTeNGaw'
+TWITTER_CONSUMER_SECRET      = 'hVc1iARybvLFInyWfr5xGjZvcuPvFHMZdnT1Thh19tE'
+FACEBOOK_APP_ID              = ''
+FACEBOOK_API_SECRET          = ''
+GOOGLE_OAUTH2_CLIENT_ID      = ''
+GOOGLE_OAUTH2_CLIENT_SECRET  = ''
+
+LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = '/'
 
 ROOT_URLCONF = 'dinein.urls'
 

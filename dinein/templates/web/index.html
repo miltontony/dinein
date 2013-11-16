@@ -1,1 +1,10 @@
 {% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Login</h1>
+<a href="{% url 'socialauth_begin' 'twitter' %}?{{ redirect_querystring }}">Twitter</a>
+
+
+{{user.username}}
+{% endblock %}
