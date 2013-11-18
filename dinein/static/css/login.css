@@ -1,0 +1,68 @@
+html, body{
+  width: 100%;
+  height: 100%;
+}
+
+body{
+  background: url(../images/body_noise.png) repeat 0 0;
+}
+
+.login-page{
+  margin: 100px auto;
+  float: none;
+}
+
+/* General Styles
+-------------------------------------------------- */
+.login-logo {
+  position: relative;
+  height: 44px;
+  border: 1px solid #1c5380;
+  border-width: 1px 1px 0;
+  -webkit-box-shadow: 0 -1px 0 #06365f inset, 0 1px 0 rgba(255,255,255,0.2) inset;
+  -moz-box-shadow: 0 -1px 0 #06365f inset, 0 1px 0 rgba(255,255,255,0.2) inset;
+  box-shadow: 0 -1px 0 #06365f inset, 0 1px 0 rgba(255,255,255,0.2) inset;
+  -webkit-border-radius: 4px 4px 0 0;
+  border-radius: 4px 4px 0 0;
+  background-color: #517fa4;
+  background-image: url(//instagram-static.s3.amazonaws.com/bluebar/prerelease/images/shared/noise-1.png), -webkit-gradient(linear, left top, left bottom, from(#517fa4), to(#306088));
+  background-image: url(//instagram-static.s3.amazonaws.com/bluebar/prerelease/images/shared/noise-1.png), -webkit-linear-gradient(top, #517fa4, #306088);
+  background-image: url(//instagram-static.s3.amazonaws.com/bluebar/prerelease/images/shared/noise-1.png), -moz-linear-gradient(top, #517fa4, #306088);
+  background-image: url(//instagram-static.s3.amazonaws.com/bluebar/prerelease/images/shared/noise-1.png), -o-linear-gradient(top, #517fa4, #306088);
+  background-image: url(//instagram-static.s3.amazonaws.com/bluebar/prerelease/images/shared/noise-1.png), -ms-linear-gradient(top, #517fa4, #306088);
+  background-image: url(//instagram-static.s3.amazonaws.com/bluebar/prerelease/images/shared/noise-1.png), linear-gradient(top, #517fa4, #306088);
+  background-position: 50% 50%;
+  margin: -1px -1px 1px;
+}
+/* line 46, ../../sass/distillery/_dialog.scss */
+.login-logo h3 {
+  width: 96px;
+  height: 33px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin: -14px 0 0 -48px;
+  background: url(../images/logo.png) no-repeat 0 0;
+  text-indent: -9999em;
+}
+
+.btn-social{
+  width: 180px;
+}
+
+.fa span{
+  float: right;
+}
+
+.fa i{
+  float: left;
+}
+
+.a-social :hover{
+  text-decoration: none;
+}
+
+.btn-label {position: relative;left: -12px;display: inline-block;padding: 6px 12px;background: rgba(0,0,0,0.15);border-radius: 3px 0 0 3px;}
+.btn-labeled {padding-top: 0;padding-bottom: 0;}
+.input-group { margin-bottom:10px; }
+.separator { border-right: 1px solid #dfdfe0; }
