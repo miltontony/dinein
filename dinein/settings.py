@@ -26,6 +26,7 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
+SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
 
 # Application definition
 
@@ -70,10 +71,8 @@ AUTHENTICATION_BACKENDS = (
 
 TWITTER_CONSUMER_KEY         = 'Gzc7NMWNQ62G5ToTeNGaw'
 TWITTER_CONSUMER_SECRET      = 'hVc1iARybvLFInyWfr5xGjZvcuPvFHMZdnT1Thh19tE'
-FACEBOOK_APP_ID              = ''
-FACEBOOK_API_SECRET          = ''
-GOOGLE_OAUTH2_CLIENT_ID      = ''
-GOOGLE_OAUTH2_CLIENT_SECRET  = ''
+GOOGLE_OAUTH2_CLIENT_ID      = '826020276883-ptas151u37i93o8269agrlnab046j3sn.apps.googleusercontent.com'
+GOOGLE_OAUTH2_CLIENT_SECRET  = 'T2B1mhqL8D8XxQxHwCZONesj'
 
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/'
