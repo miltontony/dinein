@@ -1,2 +1,11 @@
 django-social-auth
 psycopg2
+django-celery>=3
+supervisor==3.0a10
+gunicorn==0.13.4
+psycopg2
+Fabric==1.2.2
+python-memcached
+redis
+South
+requests
