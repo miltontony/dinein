@@ -40,6 +40,9 @@ INSTALLED_APPS = (
 
     'dinein',
     'social_auth',
+    'south',
+    'gunicorn',
+    'djcelery',
 )
 
 MIDDLEWARE_CLASSES = (
