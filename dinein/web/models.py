@@ -1,3 +1,10 @@
-from django.db import models
+from neo4django.db import models
 
-# Create your models here.
+
+class Person(models.NodeModel):
+    username = models.StringProperty(indexed=True)
+    follows = models.Relationship(
+        'self',
+        rel_type='follows',
+        related_name='followed_by'
+    )

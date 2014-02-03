@@ -8,3 +8,4 @@ python-memcached
 redis
 South
 requests
+neo4django
