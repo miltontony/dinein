@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 
     'dinein',
+    'dinein.web',
     'social_auth',
     'south',
     'gunicorn',
