@@ -12,7 +12,8 @@ class RecipeIngredient(models.Model):
 
 class Recipe(models.Model):
     title = models.TextField()
-    description = models.TextField()
+    description = models.TextField(default='')
+    preparation = models.TextField(default='')
     ingredients = models.ManyToManyField(
         'web.RecipeIngredient',
         blank=True,
@@ -26,4 +27,5 @@ class UserRecipes(models.Model):
         'web.Recipe',
         blank=True,
         null=True,
-        default=None)
+        default=None,
+        related_name='recipes')

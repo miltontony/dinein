@@ -7,6 +7,7 @@ urlpatterns = patterns(
     '',
     url(r'^$', 'dinein.web.views.home', name='home'),
     url(r'', include('social_auth.urls')),
+    url(r'recipes/', include('dinein.web.recipes.urls', namespace='recipes')),
     url(
         r'^logout/$',
         'django.contrib.auth.views.logout_then_login',

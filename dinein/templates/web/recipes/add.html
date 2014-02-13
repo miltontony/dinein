@@ -14,8 +14,8 @@
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">On the menu</a></li>
-            <li><a href="#about">My Recipes</a></li>
+            <li><a href="{% url 'home' %}">On the menu</a></li>
+            <li class="active"><a href="#">My Recipes</a></li>
             <li><a href="#contact">Ideabooks</a></li>
           </ul>
           <div class="navbar-form navbar-right">
@@ -31,6 +31,11 @@
     ================================================== -->
     <!-- Wrap the rest of the page in another container to center all the content. -->
       <!-- Three columns of text below the carousel -->
+      <ol class="breadcrumb">
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="#">Recipes</a></li>
+        <li class="active">Add</li>
+      </ol>
       <div class="row">
         {% if not request.user.recipes.exists %}
         <div class="col-lg-4">
