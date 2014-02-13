@@ -1,3 +1,4 @@
 from django.contrib import admin
+from dinein.web.models import Ingredient
 
-# Register your models here.
+admin.site.register(Ingredient)

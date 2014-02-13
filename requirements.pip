@@ -9,3 +9,4 @@ redis
 South
 requests
 neo4django
+django-bootstrap3

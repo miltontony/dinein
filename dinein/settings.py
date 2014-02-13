@@ -44,6 +44,7 @@ INSTALLED_APPS = (
     'south',
     'gunicorn',
     'djcelery',
+    'bootstrap3',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -91,8 +92,10 @@ WSGI_APPLICATION = 'dinein.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'dinein.db'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'dinein',
+        'USER': 'dinein',
+        'PASSWORD': 'dinein',
     }
 }
 

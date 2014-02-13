@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load bootstrap3 %}
 {% block above_content %}
      <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
@@ -27,6 +27,14 @@
 {% endblock %}
 
 {% block content %}
+<style type="text/css">
+.form-horizontal .col-md-2 button{
+  float: right;
+}
+.help-block{
+  display: none;
+}
+</style>
     <!-- Marketing messaging and featurettes
     ================================================== -->
     <!-- Wrap the rest of the page in another container to center all the content. -->
@@ -38,28 +46,14 @@
       </ol>
       <div class="row">
         {% if not request.user.recipes.exists %}
-        <div class="col-lg-4">
-          <img class="img-circle" data-src="holder.js/140x140" alt="Generic placeholder image">
-          <h2>Add Recipe</h2>
-          <p>You can create your own or add recipes from other users!</p>
-          <p>
-            <a class="btn btn-default" href="{% url 'recipes:add' %}" role="button">Add Recipe &raquo;</a>
-            <a class="btn btn-primary" href="#" role="button">
-              Browse <span class="glyphicon glyphicon-random"></span>
-            </a>
-          </p>
-        </div><!-- /.col-lg-4 -->
-        <div class="col-lg-4">
-          <img class="img-circle" data-src="holder.js/140x140" alt="Generic placeholder image">
-          <h2>Heading</h2>
-          <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div><!-- /.col-lg-4 -->
-        <div class="col-lg-4">
-          <img class="img-circle" data-src="holder.js/140x140" alt="Generic placeholder image">
-          <h2>Heading</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+        <div style="text-align:left;margin-left:20px;">
+          <form class="form-horizontal" role="form" method="POST">
+            {% csrf_token %}
+            {% bootstrap_form form layout="horizontal" %}
+            <div class="col-md-2">
+            {% buttons submit='ADD' %}{% endbuttons %}
+          </div>
+          </form>
         </div><!-- /.col-lg-4 -->
         {% endif %}
       </div><!-- /.row -->
@@ -105,4 +99,12 @@
 
       <hr class="featurette-divider">
       <!-- /END THE FEATURETTES -->
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript">
+$(function () {
+  $("#id_ingredients").select2();
+})
+</script>
 {% endblock %}

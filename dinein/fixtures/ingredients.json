@@ -1,0 +1,44 @@
+[
+    {
+        "pk": 1, "model": "web.ingredient",
+        "fields": {
+        "name": "basil"
+        }
+    },
+    {
+        "pk": 2, "model": "web.ingredient",
+        "fields": {
+        "name": "tomato"
+        }
+    },
+    {
+        "pk": 3, "model": "web.ingredient",
+        "fields": {
+        "name": "onion"
+        }
+    },
+    {
+        "pk": 4, "model": "web.ingredient",
+        "fields": {
+        "name": "garlic"
+        }
+    },
+    {
+        "pk": 5, "model": "web.ingredient",
+        "fields": {
+        "name": "red onion"
+        }
+    },
+    {
+        "pk": 6, "model": "web.ingredient",
+        "fields": {
+        "name": "potato"
+        }
+    },
+    {
+        "pk": 7, "model": "web.ingredient",
+        "fields": {
+        "name": "olive"
+        }
+    }
+]

@@ -15,19 +15,12 @@ class Migration(SchemaMigration):
         ))
         db.send_create_signal(u'web', ['Ingredient'])
 
-        # Adding model 'RecipeIngredient'
-        db.create_table(u'web_recipeingredient', (
-            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('ingredient', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['web.Ingredient'])),
-            ('quantity', self.gf('django.db.models.fields.CharField')(default='1', max_length=20)),
-        ))
-        db.send_create_signal(u'web', ['RecipeIngredient'])
-
         # Adding model 'Recipe'
         db.create_table(u'web_recipe', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('title', self.gf('django.db.models.fields.TextField')()),
-            ('description', self.gf('django.db.models.fields.TextField')()),
+            ('description', self.gf('django.db.models.fields.TextField')(default='')),
+            ('preparation', self.gf('django.db.models.fields.TextField')(default='')),
         ))
         db.send_create_signal(u'web', ['Recipe'])
 
@@ -36,33 +29,22 @@ class Migration(SchemaMigration):
         db.create_table(m2m_table_name, (
             ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
             ('recipe', models.ForeignKey(orm[u'web.recipe'], null=False)),
-            ('recipeingredient', models.ForeignKey(orm[u'web.recipeingredient'], null=False))
+            ('ingredient', models.ForeignKey(orm[u'web.ingredient'], null=False))
         ))
-        db.create_unique(m2m_table_name, ['recipe_id', 'recipeingredient_id'])
+        db.create_unique(m2m_table_name, ['recipe_id', 'ingredient_id'])
 
-        # Adding model 'UserRecipes'
-        db.create_table(u'web_userrecipes', (
+        # Adding model 'UserRecipe'
+        db.create_table(u'web_userrecipe', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'])),
+            ('user', self.gf('django.db.models.fields.related.ForeignKey')(related_name='recipes', to=orm['auth.User'])),
+            ('recipe', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['web.Recipe'])),
         ))
-        db.send_create_signal(u'web', ['UserRecipes'])
-
-        # Adding M2M table for field recipes on 'UserRecipes'
-        m2m_table_name = db.shorten_name(u'web_userrecipes_recipes')
-        db.create_table(m2m_table_name, (
-            ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
-            ('userrecipes', models.ForeignKey(orm[u'web.userrecipes'], null=False)),
-            ('recipe', models.ForeignKey(orm[u'web.recipe'], null=False))
-        ))
-        db.create_unique(m2m_table_name, ['userrecipes_id', 'recipe_id'])
+        db.send_create_signal(u'web', ['UserRecipe'])
 
 
     def backwards(self, orm):
         # Deleting model 'Ingredient'
         db.delete_table(u'web_ingredient')
-
-        # Deleting model 'RecipeIngredient'
-        db.delete_table(u'web_recipeingredient')
 
         # Deleting model 'Recipe'
         db.delete_table(u'web_recipe')
@@ -70,11 +52,8 @@ class Migration(SchemaMigration):
         # Removing M2M table for field ingredients on 'Recipe'
         db.delete_table(db.shorten_name(u'web_recipe_ingredients'))
 
-        # Deleting model 'UserRecipes'
-        db.delete_table(u'web_userrecipes')
-
-        # Removing M2M table for field recipes on 'UserRecipes'
-        db.delete_table(db.shorten_name(u'web_userrecipes_recipes'))
+        # Deleting model 'UserRecipe'
+        db.delete_table(u'web_userrecipe')
 
 
     models = {
@@ -121,22 +100,17 @@ class Migration(SchemaMigration):
         },
         u'web.recipe': {
             'Meta': {'object_name': 'Recipe'},
-            'description': ('django.db.models.fields.TextField', [], {}),
+            'description': ('django.db.models.fields.TextField', [], {'default': "''"}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'ingredients': ('django.db.models.fields.related.ManyToManyField', [], {'default': 'None', 'to': u"orm['web.RecipeIngredient']", 'null': 'True', 'symmetrical': 'False', 'blank': 'True'}),
+            'ingredients': ('django.db.models.fields.related.ManyToManyField', [], {'default': 'None', 'to': u"orm['web.Ingredient']", 'null': 'True', 'symmetrical': 'False', 'blank': 'True'}),
+            'preparation': ('django.db.models.fields.TextField', [], {'default': "''"}),
             'title': ('django.db.models.fields.TextField', [], {})
         },
-        u'web.recipeingredient': {
-            'Meta': {'object_name': 'RecipeIngredient'},
+        u'web.userrecipe': {
+            'Meta': {'object_name': 'UserRecipe'},
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'ingredient': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['web.Ingredient']"}),
-            'quantity': ('django.db.models.fields.CharField', [], {'default': "'1'", 'max_length': '20'})
-        },
-        u'web.userrecipes': {
-            'Meta': {'object_name': 'UserRecipes'},
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'recipes': ('django.db.models.fields.related.ManyToManyField', [], {'default': 'None', 'to': u"orm['web.Recipe']", 'null': 'True', 'symmetrical': 'False', 'blank': 'True'}),
-            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['auth.User']"})
+            'recipe': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['web.Recipe']"}),
+            'user': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'recipes'", 'to': u"orm['auth.User']"})
         }
     }
 
