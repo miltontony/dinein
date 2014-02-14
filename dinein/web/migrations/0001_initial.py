@@ -19,8 +19,11 @@ class Migration(SchemaMigration):
         db.create_table(u'web_recipe', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('title', self.gf('django.db.models.fields.TextField')()),
+            ('slug', self.gf('django.db.models.fields.SlugField')(max_length=255)),
             ('description', self.gf('django.db.models.fields.TextField')(default='')),
             ('preparation', self.gf('django.db.models.fields.TextField')(default='')),
+            ('created', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
+            ('modified', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, blank=True)),
         ))
         db.send_create_signal(u'web', ['Recipe'])
 
@@ -38,6 +41,7 @@ class Migration(SchemaMigration):
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('user', self.gf('django.db.models.fields.related.ForeignKey')(related_name='recipes', to=orm['auth.User'])),
             ('recipe', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['web.Recipe'])),
+            ('created', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
         ))
         db.send_create_signal(u'web', ['UserRecipe'])
 
@@ -100,14 +104,18 @@ class Migration(SchemaMigration):
         },
         u'web.recipe': {
             'Meta': {'object_name': 'Recipe'},
+            'created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             'description': ('django.db.models.fields.TextField', [], {'default': "''"}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'ingredients': ('django.db.models.fields.related.ManyToManyField', [], {'default': 'None', 'to': u"orm['web.Ingredient']", 'null': 'True', 'symmetrical': 'False', 'blank': 'True'}),
+            'modified': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
             'preparation': ('django.db.models.fields.TextField', [], {'default': "''"}),
+            'slug': ('django.db.models.fields.SlugField', [], {'max_length': '255'}),
             'title': ('django.db.models.fields.TextField', [], {})
         },
         u'web.userrecipe': {
             'Meta': {'object_name': 'UserRecipe'},
+            'created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'recipe': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['web.Recipe']"}),
             'user': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'recipes'", 'to': u"orm['auth.User']"})

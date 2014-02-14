@@ -147,3 +147,45 @@ body {
     margin-top: 120px;
   }
 }
+
+.recipe img{
+  float: left;
+}
+.recipe{
+  clear: both;
+}
+
+.recipe-add-main, .recipe-add-example{
+  width: 50%;
+  float: left;
+}
+.recipe-add-inner{
+  padding-left: 20px;
+}
+.recipe-add-inner .col-md-2{
+  width: 25%;
+}
+.recipe-add-inner .col-md-4{
+  width: 75%;
+}
+.recipe-add-main{
+  padding-top: 20px;
+}
+.recipe-add-example{
+  padding-left: 100px;
+  color: #888;
+}
+.recipe-add-example .example-text{
+  text-align: center;
+  font-style:italic;
+}
+.recipe-add-example div{
+  line-height: 25px;
+}
+.recipe-add-example .preparation{
+  margin-top: 30px;
+  line-height: 15px;
+}
+.recipe-add-example .ingredients{
+  margin-top: 60px;
+}
